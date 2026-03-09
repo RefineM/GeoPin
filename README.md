@@ -50,13 +50,12 @@ pixi run geopin --help
 
 | 参数 | 说明 | 默认值 |
 | --- | --- | --- |
-| `--kml` | KML 地标文件路径 | `input/PIN-waixigou.kml` |
-| `--video` | DJI 原始视频路径（需含可解析字幕流） | `input/DJI_20260301094020_0001_V.MP4` |
-| `--output` | 输出目录路径 | `output/DJI_20260301094020_0001_V` |
+| `--kml` | KML 地标文件路径 | `input/xxx.kml` |
+| `--video` | DJI 原始视频路径（需含可解析字幕流） | `input/xxx.MP4` |
+| `--output` | 输出目录路径 | `output/xxx` |
 | `--font-name` | ASS 字体名 | `Microsoft YaHei` |
 | `--font-size` | ASS 字号 | `60` |
 | `--max-ground-distance` | 地面水平距离上限（米）；负值关闭 | `1000.0` |
-| `--limit-kml-by-time` | 仅使用遥测时间范围内的 KML 点 | 关闭 |
 | `--dry-run` | 跳过最终 ffmpeg 烧录步骤 | 关闭 |
 
 ## 4. 输入输出

@@ -10,7 +10,6 @@ from __future__ import annotations
 import json
 import math
 import subprocess
-from datetime import datetime
 from pathlib import Path
 
 import numpy as np
@@ -80,18 +79,6 @@ def write_ass_header(path: Path, width: int, height: int, font_size: int, font_n
         "Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text\n"
     )
     path.write_text(header, encoding="utf-8")
-
-
-def maybe_filter_points_by_time(points: list[KmlPoint], start_ts: datetime, end_ts: datetime) -> list[KmlPoint]:
-    """Filter points whose timestamp lies inside telemetry time range."""
-
-    out: list[KmlPoint] = []
-    for point in points:
-        if point.timestamp is None:
-            continue
-        if start_ts <= point.timestamp <= end_ts:
-            out.append(point)
-    return out
 
 
 def build_camera_axes_enu(

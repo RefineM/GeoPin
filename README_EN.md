@@ -59,7 +59,6 @@ pixi run geopin --help
 | `--font-name` | ASS font name | `Microsoft YaHei` |
 | `--font-size` | ASS font size | `60` |
 | `--max-ground-distance` | Max horizontal ground distance in meters; negative disables filtering | `1000.0` |
-| `--limit-kml-by-time` | Keep only KML points within telemetry time range | off |
 | `--dry-run` | Skip final ffmpeg burn step | off |
 
 ## 4. Input and Output

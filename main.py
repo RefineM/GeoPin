@@ -23,7 +23,6 @@ def build_config(
     font_name: str,
     font_size: int,
     max_ground_distance: float,
-    limit_kml_by_time: bool,
     dry_run: bool,
 ) -> PipelineConfig:
     """Build pipeline config from CLI options."""
@@ -42,7 +41,6 @@ def build_config(
         font_name=font_name,
         font_size=font_size,
         max_ground_distance=max_ground_distance,
-        limit_kml_by_time=limit_kml_by_time,
         dry_run=dry_run,
     )
 
@@ -65,9 +63,6 @@ def main(
     max_ground_distance: Annotated[
         float, typer.Option(help="Optional horizontal distance cutoff in meters. Set negative to disable.")
     ] = 1000.0,
-    limit_kml_by_time: Annotated[
-        bool, typer.Option(help="Only keep KML points whose timestamp is inside telemetry range.")
-    ] = False,
     dry_run: Annotated[bool, typer.Option(help="Skip final ffmpeg render step.")] = False,
 ) -> None:
     """Per-frame trajectory projection for DJI video + KML marks."""
@@ -79,7 +74,6 @@ def main(
         font_name=font_name,
         font_size=font_size,
         max_ground_distance=max_ground_distance,
-        limit_kml_by_time=limit_kml_by_time,
         dry_run=dry_run,
     )
     try:

@@ -13,7 +13,6 @@ from pathlib import Path
 from .ass_overlay import (
     burn_ass,
     generate_ass_events,
-    maybe_filter_points_by_time,
     write_ass_header,
     write_report,
 )
@@ -37,7 +36,6 @@ class PipelineConfig:
     - report: generated JSON report path.
     - font_name/font_size: subtitle style controls.
     - max_ground_distance: optional distance cutoff; negative disables cutoff.
-    - limit_kml_by_time: whether to keep only points inside telemetry time range.
     - dry_run: if True, skip final ffmpeg rendering.
     """
 
@@ -50,7 +48,6 @@ class PipelineConfig:
     font_name: str
     font_size: int
     max_ground_distance: float | None
-    limit_kml_by_time: bool
     dry_run: bool
 
 
@@ -83,11 +80,6 @@ def run_pipeline(config: PipelineConfig) -> dict[str, object]:
     samples = parse_subtitle_telemetry(config.video)
     print(f"  Telemetry samples: {len(samples)}")
     print(f"  Telemetry range: {samples[0].timestamp} -> {samples[-1].timestamp}")
-
-    if config.limit_kml_by_time:
-        before = len(points)
-        points = maybe_filter_points_by_time(points, samples[0].timestamp, samples[-1].timestamp)
-        print(f"  Time-filtered KML points: {len(points)} (from {before})")
 
     print("[3/7] Probing video...")
     width, height, fps, frame_count, duration = probe_video(config.video)
